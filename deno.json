@@ -1,0 +1,21 @@
+{
+  "name": "rdfjs-di tester, Deno version",
+  "version": "1.0.0",
+  "description": "Testing rdfjs-di — deno version",
+  "main": "main.ts",
+  "author": "Ivan Herman <ivan@w3.org> (https://www.w3.org/People/Ivan/)",
+  "license": "W3C-20150513",
+  "tasks": {
+    "sign": "deno run --allow-env --allow-read --allow-write sign.ts",
+    "createKey": "deno run --allow-env --allow-read --allow-write createKey.ts",
+    "compile_sign": "deno compile --allow-env --allow-read --allow-write sign.ts",
+    "compile_createKey": "deno compile --allow-env --allow-read --allow-write createKey.ts"
+  },
+  "imports": {
+    "commander":    "npm:commander",
+    "n3":           "npm:n3",
+    "@rdfjs/types": "npm:@rdfjs/types",
+    "rdfjs-di":     "npm:rdfjs-di",
+    "./lib/rdfn3":  "./lib/rdfn3.ts"
+  }
+}
