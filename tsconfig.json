@@ -1,0 +1,40 @@
+{
+    "compilerOptions": {
+        "allowJs": true,
+        "alwaysStrict": true,
+        "baseUrl": ".",
+        "esModuleInterop": false,
+        "lib": ["esnext", "dom"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "noEmitHelpers": true,
+        "noImplicitAny": true,
+        "noImplicitReturns": true,
+        "noUnusedLocals": false,
+        "outDir": "dist",
+        "paths": {
+            "*": ["node_modules/*"]
+        },
+        "resolveJsonModule": true,
+        "sourceMap": false,
+        "target": "esnext"
+    },
+    "typesRoots": ["types", "node_modules/@types"],
+    "include": ["lib/**/*", "index.ts"],
+    "exclude": ["extras/**/*", "example/**/*", "testing/**/*", "tester/**/*", "Attic/**/*"],
+    "typedocOptions": {
+        "plugin": ["typedoc-theme-hierarchy"],
+        "excludeExternals": true,
+        "excludePrivate": true,
+        "excludeProtected": false,
+        "theme": "hierarchy",
+        "out": "docs",
+        "includeVersion": true,
+        "categorizeByGroup": true,
+        "gitRemote": "origin",
+        "hideGenerator": true,
+        "sort": ["static-first", "visibility"],
+        "name": "Proof-of concepts Implementation of the Dataset Integrity Specification on top of rdf-js",
+        "exclude": "../../RCH/**/*"
+    }
+}
