@@ -11,11 +11,12 @@
     "compile_sign": "deno compile --allow-env --allow-read --allow-write sign.ts",
     "compile_createKey": "deno compile --allow-env --allow-read --allow-write createKey.ts"
   },
+  "exports": "./sign.ts",
   "imports": {
     "commander":    "npm:commander",
     "n3":           "npm:n3",
     "@rdfjs/types": "npm:@rdfjs/types",
-    "rdfjs-di":     "npm:rdfjs-di",
+    "rdfjs-di":     "npm:rdfjs-di@0.1.0",
     "./lib/rdfn3":  "./lib/rdfn3.ts"
   }
 }

@@ -1,3 +1,4 @@
+// deno-lint-ignore-file verbatim-module-syntax
 /**
  * Direct interface to the N3 Package, essentially relying on the TriG parser and the DataFactory 
  * implementation. All other parts of the library should only depend on the general

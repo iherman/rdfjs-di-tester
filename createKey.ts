@@ -3,43 +3,6 @@ import * as di      from 'rdfjs-di';
 import * as process from 'node:process';
 
 
-async function generateKey(suite: di.Cryptosuites, keyData?: di.KeyDetails): Promise<di.KeyData> {
-    const suiteToAPI = (): RsaHashedKeyGenParams | EcKeyGenParams => {
-        switch (suite) {
-            case di.Cryptosuites.ecdsa: return {
-                name: "ECDSA",
-                namedCurve: keyData?.namedCurve || "P-256",
-            } as EcKeyGenParams;
-            case di.Cryptosuites.eddsa: return {
-                name: "Ed25519"
-            } as EcKeyGenParams;
-            case di.Cryptosuites.rsa_pss: return {
-                name: "RSA-PSS",
-                modulusLength: keyData?.modulusLength || 2048,
-                publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
-                hash: keyData?.hash || "SHA-256",
-            } as RsaHashedKeyGenParams;
-            case di.Cryptosuites.rsa_ssa: return {
-                name: 'RSASSA-PKCS1-v1_5',
-                modulusLength: keyData?.modulusLength || 2048,
-                publicExponent: new Uint8Array([0x01, 0x00, 0x01]),
-                hash: keyData?.hash || "SHA-256",
-            } as RsaHashedKeyGenParams;
-        }
-    };
-
-    const keys: CryptoKeyPair = await crypto.subtle.generateKey(suiteToAPI(), true, ["sign", "verify"]);
-
-    return {
-        public      : await crypto.subtle.exportKey('jwk', keys.publicKey),
-        private     : await crypto.subtle.exportKey('jwk', keys.privateKey),
-        controller  : "https://www.ivan-herman.name/foaf#me",
-        expires     : "2055-02-24T00:00",
-        cryptosuite : suite 
-    }
-}
-
-
 (async () : Promise<void> => {
     const program = new Command();
     program 
@@ -60,7 +23,14 @@ async function generateKey(suite: di.Cryptosuites, keyData?: di.KeyDetails): Pro
         }
         throw new Error("Unknown crypto name. Should be one of 'ecdsa', 'eddsa', 'rsa_pss', or 'rsa_ssa'.");
     })(input);
-    const keys = await generateKey(suite);
-    console.log(JSON.stringify(keys,null,4));
+
+    const cryptoKeys: di.KeyData = await di.generateKey(suite);
+    const toStore = {
+        publicKey  : await crypto.subtle.exportKey("jwk", cryptoKeys.publicKey),
+        privateKey : await crypto.subtle.exportKey("jwk", cryptoKeys.privateKey),
+        controller : "https://www.ivan-herman.name/foaf#me",
+        expires    : "2055-02-24T00:00"
+    }
+    console.log(JSON.stringify(toStore,null,4));
 })();
 

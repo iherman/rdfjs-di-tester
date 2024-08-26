@@ -1,4 +1,4 @@
-// deno-lint-ignore-file require-await
+// deno-lint-ignore-file require-await verbatim-module-syntax
 import * as rdf     from '@rdfjs/types';
 import { Command }  from 'commander';
 import * as di      from 'rdfjs-di';
@@ -8,11 +8,24 @@ import * as fs      from 'node:fs/promises';
 import * as rdfn3   from './lib/rdfn3';
 import * as n3      from 'n3';
 
+interface JWKKeyPair {
+    publicKey: JsonWebKey,
+    privateKey: JsonWebKey,
+    controller?: string,
+    expires?: string
+}
+
 async function get_keys(keyref: string): Promise<di.KeyData[]> {
     const get_key = async (keyref: string): Promise<di.KeyData> => {
         const key_file: string = path.join(process.env.KEY_ENV ?? "", keyref) + '.json';
         const raw_keys: string = await fs.readFile(key_file, 'utf-8');
-        return JSON.parse(raw_keys);
+        const jwkKeyPair: JWKKeyPair = JSON.parse(raw_keys) as JWKKeyPair;
+        return {
+            publicKey  : await di.jwkToCrypto(jwkKeyPair.publicKey, false),
+            privateKey : await di.jwkToCrypto(jwkKeyPair.privateKey, true),
+            controller : jwkKeyPair?.controller,
+            expires    : jwkKeyPair?.expires
+        }
     };
 
     const refs: string[] = keyref.split(',').map((key: string): string => key.trim());
@@ -26,10 +39,10 @@ async function get_keys(keyref: string): Promise<di.KeyData[]> {
         .name('di_sign')
         .usage('[options] file')
         .description('Signing an RDF dataset or graph.')
-        .option('-a, --anchor <anchor>', 'Anchor the proof graph to the file name (if applicable). Must be a URL')
         .option('-e, --embed', 'Create an embedded proof')
+        .option('-a, --anchor <anchor>', 'Anchor for the proof graph(s). Must be a URL, possibly encoding the file name as a file URL. Only relevant for embedded proofs, otherwise ignored.')
         .option('-k, --key <keyref>', 'Key reference, or comma separated list thereof. Refers to file names in users key directory')
-        .option('-g, --gid <gid>', 'Proof graph ID, or comma separated list thereof. Separates the proof graphs using these ID-s, or blank nodes. This options is ignored in the embedded case')
+        .option('-g, --gid <gid>', 'Proof graph ID, or comma separated list thereof. Separates the proof graphs using these ID-s, or blank nodes. Must be URLs. This options is ignored in the embedded case')
         .option('-o, --output <output>', 'Output file')
         .parse(process.argv);
 

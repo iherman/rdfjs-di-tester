@@ -1,6 +1,6 @@
 [
     {
-        "public": {
+        "publicKey": {
             "key_ops": [
                 "verify"
             ],
@@ -10,7 +10,7 @@
             "y": "9T4ThlFhLi84d3LOaOkvrzLrr_EEczB0sIv3S3vzdd8",
             "crv": "P-256"
         },
-        "private": {
+        "privateKey": {
             "key_ops": [
                 "sign"
             ],
@@ -25,7 +25,7 @@
         "expires": "2055-02-24T00:00:00Z"
     },
     {
-        "private" : {
+        "privateKey" : {
             "key_ops": [
                 "sign"
             ],
@@ -35,7 +35,7 @@
             "x": "ongxF1Oaz0kjHzvVHQEu1fZuONk05Sl3DGttVCrdkNs",
             "kty": "OKP"
         },
-        "public": {
+        "publicKey": {
             "key_ops": [
                 "verify"
             ],
@@ -48,7 +48,7 @@
         "expires": "2055-02-24T00:00:00Z"
     },
     {
-        "public": {
+        "publicKey": {
             "key_ops": [
                 "verify"
             ],
@@ -58,7 +58,7 @@
             "e": "AQAB",
             "alg": "PS256"
         },
-        "private": {
+        "privateKey": {
             "key_ops": [
                 "sign"
             ],

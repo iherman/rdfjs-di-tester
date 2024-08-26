@@ -1,4 +1,4 @@
-// deno-lint-ignore-file require-await
+// deno-lint-ignore-file require-await verbatim-module-syntax
 import * as rdf     from '@rdfjs/types';
 import { Command }  from 'commander';
 import * as di      from 'rdfjs-di';
@@ -7,11 +7,24 @@ import * as path    from 'node:path';
 import * as fs      from 'node:fs/promises';
 import * as rdfn3   from './lib/rdfn3';
 
+interface JWKKeyPair {
+    publicKey: JsonWebKey,
+    privateKey: JsonWebKey,
+    controller?: string,
+    expires?: string;
+}
+
 async function get_key(keyref: string): Promise<di.KeyData> {
     // combine the HOME with the key directory and the keyref to get
     const key_file: string = path.join(process.env.KEY_ENV ?? "", keyref) + '.json';
     const raw_keys: string = await fs.readFile(key_file, 'utf-8');
-    return JSON.parse(raw_keys);
+    const jwkKeyPair: JWKKeyPair = JSON.parse(raw_keys) as JWKKeyPair;
+    return {
+        publicKey: await di.jwkToCrypto(jwkKeyPair.publicKey, false),
+        privateKey: await di.jwkToCrypto(jwkKeyPair.privateKey, true),
+        controller: jwkKeyPair?.controller,
+        expires: jwkKeyPair?.expires
+    };
 }
 
 (async (): Promise<void> => {
