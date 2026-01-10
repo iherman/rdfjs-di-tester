@@ -5,17 +5,17 @@
       "npm:@rdfjs/types": "npm:@rdfjs/types@1.1.0",
       "npm:commander": "npm:commander@12.1.0",
       "npm:n3": "npm:n3@1.17.4",
-      "npm:rdfjs-di@0.1.0": "npm:rdfjs-di@0.1.0"
+      "npm:rdfjs-di@0.1.1": "npm:rdfjs-di@0.1.1"
     },
     "npm": {
-      "@noble/curves@1.5.0": {
-        "integrity": "sha512-J5EKamIHnKPyClwVrzmaf5wSdQXgdHcPZIZLu3bwnbeCx8/7NPK5q2ZBWF+5FvYGByjiQQsJYX6jfgB2wDPn3A==",
+      "@noble/curves@1.6.0": {
+        "integrity": "sha512-TlaHRXDehJuRNR9TfZDNQ45mMEd5dwUwmicsafcIX4SsNiqnCHKjE/1alYPd/lDRVhxdhUAlv8uEhMCI5zjIJQ==",
         "dependencies": {
-          "@noble/hashes": "@noble/hashes@1.4.0"
+          "@noble/hashes": "@noble/hashes@1.5.0"
         }
       },
-      "@noble/hashes@1.4.0": {
-        "integrity": "sha512-V1JJ1WTRUqHHrOSh597hURcMqVKVGL/ea3kv0gSnEdsEZ0/+VyPghM1lMNGc00z7CIQorSvbKpuJkxvuHbvdbg==",
+      "@noble/hashes@1.5.0": {
+        "integrity": "sha512-1j6kQFb7QRru7eKN3ZDvRcP13rugwdxZqCjbiAVZfIJwgj2A65UmT4TgARXGlXgnRkORLTDTrO19ZErt7+QXgA==",
         "dependencies": {}
       },
       "@rdfjs/types@1.1.0": {
@@ -84,7 +84,7 @@
       "multikey-webcrypto@0.5.0": {
         "integrity": "sha512-qBIu3GcYsIKe3N95JZdT08Zyw0YDrJv3wO4sWhO3w0n8GDCJnpKA5cZCicXxOLFBilcfV1luOdY+572t2dLe+g==",
         "dependencies": {
-          "@noble/curves": "@noble/curves@1.5.0"
+          "@noble/curves": "@noble/curves@1.6.0"
         }
       },
       "n3@1.17.4": {
@@ -110,11 +110,11 @@
           "array-permutation": "array-permutation@0.2.0",
           "event-emitter-promisify": "event-emitter-promisify@1.1.0",
           "n3": "n3@1.17.4",
-          "yaml": "yaml@2.5.0"
+          "yaml": "yaml@2.5.1"
         }
       },
-      "rdfjs-di@0.1.0": {
-        "integrity": "sha512-eCJ9jHfFuBdRIzuqNU4VTZFFnFBbNN8zAzdjmbiU1UQu0ByN45uDYelEpYQDgzj1Lt8bc5YuY8q60OMiiBIFcw==",
+      "rdfjs-di@0.1.1": {
+        "integrity": "sha512-KJc2azagCi38O16lwaIZoOcC0JAg0+w2af/2MhviwwWhLZW6P1WMU79DTPs+4Eitun7Mwxma+LaNKb8mMcBySQ==",
         "dependencies": {
           "@rdfjs/types": "@rdfjs/types@1.1.0",
           "@truestamp/canonify": "@truestamp/canonify@2.1.0",
@@ -150,8 +150,8 @@
         "integrity": "sha512-b+1eJOlsR9K8HJpow9Ok3fiWOWSIcIzXodvv0rQjVoOVNpWMpxf1wZNpt4y9h10odCNrqnYp1OBzRktckBe3sA==",
         "dependencies": {}
       },
-      "yaml@2.5.0": {
-        "integrity": "sha512-2wWLbGbYDiSqqIKoPjar3MPgB94ErzCtrNE1FdqGuaO0pi2JGjmE8aW8TDZwzU7vuxcGRdL/4gPQwQ7hD5AMSw==",
+      "yaml@2.5.1": {
+        "integrity": "sha512-bLQOjaX/ADgQ20isPJRvF0iRUHIxVhYvr53Of7wGcWlO2jvtUlH5m87DsmulFVxRpNLOnI4tB6p/oh8D7kpn9Q==",
         "dependencies": {}
       }
     }
@@ -162,7 +162,7 @@
       "npm:@rdfjs/types",
       "npm:commander",
       "npm:n3",
-      "npm:rdfjs-di@0.1.0"
+      "npm:rdfjs-di@0.1.1"
     ]
   }
 }

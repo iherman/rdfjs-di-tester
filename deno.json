@@ -16,7 +16,7 @@
     "commander":    "npm:commander",
     "n3":           "npm:n3",
     "@rdfjs/types": "npm:@rdfjs/types",
-    "rdfjs-di":     "npm:rdfjs-di@0.1.0",
+    "rdfjs-di":     "npm:rdfjs-di@0.1.1",
     "./lib/rdfn3":  "./lib/rdfn3.ts"
   }
 }
